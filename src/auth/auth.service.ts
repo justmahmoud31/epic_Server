@@ -41,7 +41,7 @@ export class AuthService {
 
         return {
             message: 'User created successfully',
-             user: {
+            user: {
                 id: user.id,
                 email: user.email,
                 role: user.role,
@@ -69,7 +69,7 @@ export class AuthService {
         }
 
         // Generate JWT
-        const payload = { sub: user.id, email: user.email, role: user.role };
+        const payload = { sub: user.id, email: user.email, roles: [user.role] };
         const accessToken = this.jwtService.sign(payload);
 
         return {

@@ -7,10 +7,18 @@ async function bootstrap() {
 
   // Swagger setup
   const config = new DocumentBuilder()
-    .setTitle('Auth API')
-    .setDescription('The Auth API for user authentication (login, signup)')
+    .setTitle('Epic API')
+    .setDescription('The API for Epic Project')
     .setVersion('1.0')
-    .addTag('auth')
+    .addBearerAuth(  // <-- THIS is important
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'access-token', // This is the name of the security scheme
+    )
+    // .addTag('auth')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
